@@ -37,7 +37,7 @@ public class DeleteResponse extends ActionResponse {
     private String id;
     private String type;
     private long version;
-    private boolean notFound;
+    private boolean notFound;    
 
     public DeleteResponse() {
 
@@ -96,6 +96,11 @@ public class DeleteResponse extends ActionResponse {
         notFound = in.readBoolean();
     }
 
+    @Override
+    public String toString() {
+        return "DeleteResponse["+index+"/"+type+"/"+id+" notFound=" + notFound + "]";
+    }
+    
     @Override
     public void writeTo(StreamOutput out) throws IOException {
         super.writeTo(out);

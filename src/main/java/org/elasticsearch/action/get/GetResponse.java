@@ -158,6 +158,11 @@ public class GetResponse extends ActionResponse implements Iterable<GetField>, T
     }
 
     @Override
+    public String toString() {
+        return "GetResponse["+getResult+ "]";
+    }
+    
+    @Override
     public void writeTo(StreamOutput out) throws IOException {
         super.writeTo(out);
         getResult.writeTo(out);

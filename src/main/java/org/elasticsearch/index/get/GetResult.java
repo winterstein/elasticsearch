@@ -19,7 +19,6 @@
 
 package org.elasticsearch.index.get;
 
-import com.google.common.collect.ImmutableMap;
 import org.elasticsearch.ElasticSearchParseException;
 import org.elasticsearch.common.bytes.BytesReference;
 import org.elasticsearch.common.compress.CompressorFactory;
@@ -37,8 +36,6 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.Map;
 
-import static com.google.common.collect.Iterators.emptyIterator;
-import static com.google.common.collect.Maps.newHashMapWithExpectedSize;
 import static org.elasticsearch.index.get.GetField.readGetField;
 
 /**
@@ -195,6 +192,12 @@ public class GetResult implements Streamable, Iterable<GetField>, ToXContent {
             return emptyIterator();
         }
         return fields.values().iterator();
+    }
+    
+    @Override
+    public String toString() {
+    	// should be short, as it's primarily a debugging aid, so don't include the "big" source objects.
+        return "GetResult["+index+"/"+type+"/"+id+" "+exists+"]";
     }
 
     static final class Fields {
